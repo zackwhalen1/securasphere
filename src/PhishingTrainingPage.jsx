@@ -75,7 +75,7 @@ function PhishingTrainingPage() {
   return (
     <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
       {/* Back button positioned like in HUD test */}
-      <BackButton message="Back to Home" path="/test" />
+      <BackButton message="Back to Home" path="/" />
       {/* AI Helper Component */}
       <AIHelper />
       {/* Forward button to phishing tool page */}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HUDTest.css';
-import BackButton from './components/BackButton';
 import AIHelper from './components/AIHelper';
 
 // Import components directly instead of dynamic imports
@@ -33,8 +32,6 @@ function HUDTestFixed() {
         background: '#000',
         position: 'relative'
       }}>
-        {/* Back button even during loading */}
-        <BackButton message='Back to Old App' path='/' />
 
         {/* Show loading animation */}
         <RadarLoading message='ENGAGING SECURITY PROTOCOLS...'/>
@@ -48,8 +45,6 @@ function HUDTestFixed() {
       background: '#000',
       position: 'relative'
     }}>
-      {/* Back button to return to main app */}
-      <BackButton message='Back to Old App' path='/' />
 
       {/* Toggle button removed - no longer needed */}
       
