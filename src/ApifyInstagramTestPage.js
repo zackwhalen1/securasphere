@@ -8,8 +8,10 @@ function ApifyInstagramTestPage() {
   const [showTestData, setShowTestData] = useState(false);
   const [serviceStatus, setServiceStatus] = useState(null);
 
-  // backend API base URL
-  const API_BASE_URL = 'http://localhost:5000';
+  // Local backend API base URL
+  //const API_BASE_URL = 'http://localhost:5000';
+  
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   // checks service status on component mount
   useEffect(() => {

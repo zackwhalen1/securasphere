@@ -9,6 +9,9 @@ function AIHelper() {
   const messagesEndRef = React.useRef(null);
   const messagesContainerRef = React.useRef(null);
 
+  //For deployment backend URL
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
    // 🔹 AI Helper state
   const [aiMessages, setAiMessages] = useState([
     { role: "assistant", content: "Hi! I’m Aegis, your SecuraSphere AI helper. Ask me anything questions you have about cybersecurity." }
@@ -26,7 +29,9 @@ function AIHelper() {
       setAiError("");
   
       try {
-        const res = await fetch("http://localhost:5000/assistant", {
+        //For local testing
+        //const res = await fetch("http://localhost:5000/assistant", {
+        const res = await fetch(`${API_BASE_URL}/assistant`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ messages: newMessages }),

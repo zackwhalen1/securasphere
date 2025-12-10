@@ -13,7 +13,11 @@ function UnifiedSocialMediaAnalyzer() {
   const [selectedPlatform, setSelectedPlatform] = useState('instagram');
 
   // backend API base URL
-  const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+  //Local backend URL
+  //const API_BASE_URL = 'http://localhost:5000';
+
+
 
   // checks service status on component mount
   useEffect(() => {

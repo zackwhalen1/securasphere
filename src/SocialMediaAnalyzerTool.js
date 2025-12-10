@@ -23,7 +23,9 @@ function SocialMediaAnalyzerTool() {
   const [selectedPlatform, setSelectedPlatform] = useState('instagram');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const API_BASE_URL = 'http://localhost:5000';
+  //Local backend URL
+  //const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   React.useEffect(() => {
     if (isLoading) {
