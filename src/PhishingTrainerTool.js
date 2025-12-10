@@ -12,6 +12,9 @@ import AIHelper from './components/AIHelper';
 
 const MotionDiv = motion.div;
 
+//For deployment backend URL
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function PhishingTrainerTool() {
   const navigate = useNavigate();
   const [emailText, setEmailText] = useState('');
@@ -44,7 +47,9 @@ function PhishingTrainerTool() {
     setResult(null);
 
     try {
-      const response = await axios.post('http://localhost:5000/predict', {
+      //For local testing
+      //const response = await axios.post('http://localhost:5000/predict', {
+      const response = await axios.post(`${API_BASE_URL}/phishing/predict`, {
         email: emailText
       });
 
