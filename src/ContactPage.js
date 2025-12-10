@@ -37,7 +37,7 @@ function ContactPage() {
       </header>
 
       {/* Back button */}
-      <BackButton message="Back to Home" path="/test" />
+      <BackButton message="Back to Home" path="/" />
 
           {/* Main Content */}
         {/* Welcome Section */}
