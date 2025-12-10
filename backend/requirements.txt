@@ -8,5 +8,6 @@ numpy
 joblib
 nltk
 apify-client
+groq
 
 
