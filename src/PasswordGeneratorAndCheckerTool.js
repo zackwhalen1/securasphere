@@ -228,7 +228,7 @@ function PasswordGeneratorAndCheckerTool() {
         recommendations.push({ title: 'Add Character Variety', description: 'Include uppercase, lowercase, numbers, and symbols' });
       }
 
-      const riskScore = Math.min(10, Math.max(0, 10 - strength));
+      const riskScore = Math.min(7, Math.max(0, 7 - strength));
 
       setCheckResults({
         password: passwordToCheck,
@@ -377,7 +377,7 @@ function PasswordGeneratorAndCheckerTool() {
                             }}
                             className="font-mono font-bold"
                           >
-                            {10 - checkResults.riskScore}/10
+                            {7 - checkResults.riskScore}/7
                           </div>
                           <div 
                             style={{ 
