@@ -18,24 +18,33 @@ function Footer() {
 
   return (
     <footer 
-      className="relative z-20 border-t border-cyan-800/20 px-8 py-6 backdrop-blur-sm"
+      className="relative z-20 border-t border-cyan-800/20 px-0 sm:px-8 py-0 sm:py-6 backdrop-blur-sm"
       style={{
         position: 'fixed',
         bottom: '0',
         left: '0',
         right: '0',
-        paddingTop: '12px',
-        paddingBottom: '15px'
+        paddingTop: 'clamp(2px, 1vw, 12px)',
+        paddingBottom: 'clamp(2px, 1vw, 15px)'
       }}>
-      <div className="flex items-center justify-between text-sm text-cyan-300/60">
-        <p>© 2025 SecuraSphere. Team CAWWZ. UF Senior Project.</p>
-        <div className="flex gap-6">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-0 text-cyan-300/60"
+        style={{ fontSize: 'clamp(6px, 2vw, 14px)' }}>
+        <p className="text-center sm:text-left" style={{ whiteSpace: 'nowrap' }}>© 2025 SecuraSphere. Team CAWWZ. UF Senior Project.</p>
+        <div className="flex flex-wrap justify-center gap-1 sm:gap-8">
           <a 
             href="#" 
-            className="hover:text-cyan-100 transition-colors"
-            style={{ transition: 'all 0.3s ease' }}
+            className="hover:text-cyan-100 transition-colors touch-manipulation"
+            style={{ 
+              transition: 'all 0.3s ease',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '8px'
+            }}
             onMouseOver={handleLinkHover}
             onMouseOut={handleLinkLeave}
+            onTouchStart={handleLinkHover}
+            onTouchEnd={handleLinkLeave}
             onClick={(e) => {
               e.preventDefault();
               navigate('/about');
@@ -44,10 +53,18 @@ function Footer() {
           </a>
           <a 
             href="#" 
-            className="hover:text-cyan-100 transition-colors"
-            style={{ transition: 'all 0.3s ease' }}
+            className="hover:text-cyan-100 transition-colors touch-manipulation"
+            style={{ 
+              transition: 'all 0.3s ease',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '8px'
+            }}
             onMouseOver={handleLinkHover}
             onMouseOut={handleLinkLeave}
+            onTouchStart={handleLinkHover}
+            onTouchEnd={handleLinkLeave}
             onClick={(e) => {
               e.preventDefault();
               navigate('/privacy');
@@ -56,10 +73,18 @@ function Footer() {
           </a>
           <a 
             href="#"
-            className="hover:text-cyan-100 transition-colors"
-            style={{ transition: 'all 0.3s ease' }}
+            className="hover:text-cyan-100 transition-colors touch-manipulation"
+            style={{ 
+              transition: 'all 0.3s ease',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '8px'
+            }}
             onMouseOver={handleLinkHover}
             onMouseOut={handleLinkLeave}
+            onTouchStart={handleLinkHover}
+            onTouchEnd={handleLinkLeave}
             onClick={(e) => {
               e.preventDefault();
               navigate('/terms');
@@ -68,10 +93,18 @@ function Footer() {
           </a>
           <a 
             href="#" 
-            className="hover:text-cyan-100 transition-colors"
-            style={{ transition: 'all 0.3s ease' }}
+            className="hover:text-cyan-100 transition-colors touch-manipulation"
+            style={{ 
+              transition: 'all 0.3s ease',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '8px'
+            }}
             onMouseOver={handleLinkHover}
             onMouseOut={handleLinkLeave}
+            onTouchStart={handleLinkHover}
+            onTouchEnd={handleLinkLeave}
             onClick={(e) => {
               e.preventDefault();
               navigate('/contact');

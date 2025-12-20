@@ -7,10 +7,10 @@ function BackButton({ message, path }) {
   return (
     <div style={{
         position: 'fixed',
-        top: '20px',
-        left: '20px',
+        top: '10px',
+        left: '10px',
         zIndex: 10000,
-        padding: '10px 15px',
+        padding: '5px 10px',
       }}>
         <button 
           onClick={() => navigate(path)}
@@ -21,11 +21,17 @@ function BackButton({ message, path }) {
             color: '#00ffff',
             border: '1px solid #00ffff',
             cursor: 'pointer',
-            fontSize: '14px',
-            padding: '8px 12px',
-            borderRadius: '4px',
+            fontSize: window.innerWidth < 640 ? '12px' : '14px',
+            padding: window.innerWidth < 640 ? '12px 16px' : '8px 12px',
+            borderRadius: '6px',
             fontFamily: 'monospace',
-            transition: 'all 0.3s ease'
+            transition: 'all 0.3s ease',
+            minHeight: '44px',
+            minWidth: '44px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            touchAction: 'manipulation'
           }}
           onMouseOver={(e) => {
             e.target.style.background = 'rgba(0, 255, 255, 0.1)';
@@ -33,9 +39,17 @@ function BackButton({ message, path }) {
             e.target.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.6)';
           }}
           onMouseOut={(e) => {
-            e.target.style.background = 'transparent';
+            e.target.style.background = 'rgba(0, 0, 0, 0.3)';
             e.target.style.transform = 'scale(1)';
             e.target.style.boxShadow = 'none';
+          }}
+          onTouchStart={(e) => {
+            e.target.style.background = 'rgba(0, 255, 255, 0.1)';
+            e.target.style.transform = 'scale(0.95)';
+          }}
+          onTouchEnd={(e) => {
+            e.target.style.background = 'rgba(0, 0, 0, 0.3)';
+            e.target.style.transform = 'scale(1)';
           }}
         >
           ← {message}

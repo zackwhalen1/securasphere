@@ -70,31 +70,36 @@ function AIHelper() {
   return (
     <div className="status-box" style={{
         position: 'fixed',
-        bottom: '60px',
-        right: '20px',
-        padding: '15px',
+        bottom: window.innerWidth < 640 ? '40px' : '75px',
+        right: window.innerWidth < 640 ? '10px' : '20px',
+        padding: window.innerWidth < 640 ? '5px' : '15px',
         borderRadius: '8px',
         maxWidth: '300px',
-        fontSize: '12px',
+        fontSize: 'clamp(10px, 2.5vw, 12px)',
         zIndex: 11000,
     }}>
         <button
           onClick={() => setShowAI(prev => !prev)}
           style={{
-            background: 'transparent',
+            background: 'rgba(0, 0, 0, 0.3)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
             color: '#00ffff',
             border: '2px solid #00ffff',
             borderRadius: '6px',
-            padding: '8px 15px',
+            padding: window.innerWidth < 640 ? '10px 12px' : '8px 15px',
             cursor: 'pointer',
-            fontSize: '12px',
-            marginTop: '12px',
+            fontSize: 'clamp(10px, 2.5vw, 12px)',
+            marginTop: window.innerWidth < 640 ? '8px' : '12px',
             fontFamily: 'monospace',
             fontWeight: 'bold',
             transition: 'all 0.3s ease',
-            boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)'
+            boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)',
+            minHeight: '44px',
+            touchAction: 'manipulation',
+            whiteSpace: 'nowrap'
             }}>
-        AI AGENT HELPER
+        {window.innerWidth < 640 ? 'AI HELPER' : 'AI AGENT HELPER'}
         </button>
 
         {/* 🔹 AI Helper Section */}
@@ -104,10 +109,12 @@ function AIHelper() {
               background: 'black',
               border: "1px solid #444",
               borderRadius: "8px",
-              marginTop: "2rem",
+              marginTop: window.innerWidth < 640 ? "1rem" : "2rem",
               position: 'fixed',
-              bottom: '60px',
-              right: '20px',
+              bottom: window.innerWidth < 640 ? '40px' : '75px',
+              right: window.innerWidth < 640 ? '10px' : '20px',
+              left: window.innerWidth < 640 ? '10px' : 'auto',
+              maxWidth: window.innerWidth < 640 ? 'calc(100vw - 20px)' : '600px',
               zIndex: 11000
             }}>
             <div style={{ 
@@ -116,23 +123,29 @@ function AIHelper() {
                 alignItems: "center",
                 fontFamily: 'monospace',
                 fontWeight: 'bold',
-                fontSize: '20px',
-                marginLeft: '12px',}}>
-                <h2>SecuraSphere AI Helper</h2>
+                fontSize: window.innerWidth < 640 ? '14px' : '20px',
+                marginLeft: window.innerWidth < 640 ? '8px' : '12px',
+                flexWrap: 'wrap',
+                gap: '8px'
+            }}>
+                <h2 style={{ margin: 0, fontSize: 'clamp(14px, 4vw, 20px)' }}>SecuraSphere AI Helper</h2>
                 <button
                    onClick={() => setShowAI(prev => !prev)}
                     disabled={aiLoading}
                     style={{
                       textAlign: "right",
-                      padding: "0.5rem 1rem",
+                      padding: window.innerWidth < 640 ? "0.6rem 0.8rem" : "0.5rem 1rem",
                       borderRadius: "4px",
-                      marginBottom: "1rem",
-                      marginRight: "1rem",
+                      marginBottom: window.innerWidth < 640 ? "0.5rem" : "1rem",
+                      marginRight: window.innerWidth < 640 ? "0.5rem" : "1rem",
                       border: "none",
                       cursor: aiLoading ? "not-allowed" : "pointer",
                       background: "linear-gradient(45deg, #22fc63ff, #07f78fff)",
                       color: "#000",
                       fontWeight: "bold",
+                      minHeight: "44px",
+                      touchAction: "manipulation",
+                      fontSize: 'clamp(11px, 2.5vw, 14px)'
                     }}
                   >
                 CLOSE
@@ -144,15 +157,15 @@ function AIHelper() {
                     margin: "0 auto",
                     border: "1px solid #444",
                     borderRadius: "8px",
-                    padding: "1rem",
+                    padding: window.innerWidth < 640 ? "0.5rem" : "1rem",
                     background: "#0b1020",
                   }}
                 >
                   <div
                     ref={messagesContainerRef}
                     style={{
-                        padding: "0.6rem 0.6rem 0.4rem",
-                        height: "475px",
+                        padding: window.innerWidth < 640 ? "0.4rem" : "0.6rem 0.6rem 0.4rem",
+                        height: window.innerWidth < 640 ? "300px" : "475px",
                         flex: 1,
                         overflowY: "auto",
                         display: "flex",
@@ -167,8 +180,8 @@ function AIHelper() {
                         key={idx}
                         style={{
                           alignSelf: m.role === "user" ? "flex-end" : "flex-start",
-                          maxWidth: "90%",
-                          padding: "0.45rem 0.6rem",
+                          maxWidth: window.innerWidth < 640 ? "95%" : "90%",
+                          padding: window.innerWidth < 640 ? "0.4rem 0.5rem" : "0.45rem 0.6rem",
                           borderRadius: "8px",
                           background: m.role === "user"
                             ? "rgba(0, 224, 255, 0.12)"
@@ -176,7 +189,8 @@ function AIHelper() {
                           border: `1px solid ${
                             m.role === "user" ? "rgba(0, 224, 255, 0.7)" : "rgba(34, 252, 99, 0.6)"
                           }`,
-                          fontSize: "0.8rem",
+                          fontSize: window.innerWidth < 640 ? "0.7rem" : "0.8rem",
+                          wordBreak: "break-word"
                         }}
                       >
                         <strong style={{ color: m.role === "user" ? "#00e0ff" : "#22fc63" }}>
@@ -218,14 +232,19 @@ function AIHelper() {
                       disabled={aiLoading}
                       style={{
                         display: "flex",
-                        padding: "0.5rem 1rem",
-                        marginBottom: "1rem",
+                        padding: window.innerWidth < 640 ? "0.6rem 0.8rem" : "0.5rem 1rem",
+                        marginBottom: window.innerWidth < 640 ? "0.5rem" : "1rem",
                         borderRadius: "4px",
                         border: "none",
                         cursor: aiLoading ? "not-allowed" : "pointer",
                         background: "linear-gradient(45deg, #22fc63ff, #07f78fff)",
                         color: "#000",
                         fontWeight: "bold",
+                        minHeight: "44px",
+                        touchAction: "manipulation",
+                        fontSize: 'clamp(11px, 2.5vw, 14px)',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                       }}
                     >
                       {aiLoading ? "Sending..." : "Send"}
