@@ -141,11 +141,11 @@ function PhishingTrainingPage() {
           <h3 className="text-3xl font-bold text-white mb-8 text-center" style={{ fontSize: '1.5rem' }}>
             Threat Statistics
           </h3>
-          <div className="flex gap-8 justify-center max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 max-w-6xl mx-auto pt-stats">
             {stats.map((stat, index) => (
               <MotionDiv
                 key={index}
-                className="bg-slate-800/50 backdrop-blur-sm border border-cyan-800/30 rounded-xl p-6 text-center hover:border-cyan-600/70 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300"
+                className="bg-slate-800/50 backdrop-blur-sm border border-cyan-800/30 rounded-xl p-6 text-center hover:border-cyan-600/70 hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300 pt-stat-card"
                 style={{ flex: '1 1 0', minWidth: 0 }}
                 whileHover={{ scale: 1.05 }}
                 initial={{ opacity: 0, y: 50 }}

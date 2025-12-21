@@ -36,11 +36,12 @@ function PasswordGeneratorAndCheckerTool() {
   ];
 
   React.useEffect(() => {
+    // Loading animation for 1.5 seconds
     if (isLoading) {
       const loadingTimer = setTimeout(() => {
         setTimeout(() => {
           setIsLoading(false);
-        }, 2000);
+        }, 1500);
       }, 500);
 
       return () => clearTimeout(loadingTimer);

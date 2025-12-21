@@ -102,6 +102,18 @@
   color: #666666 !important;
 }
 
+/* Phishing Training Page: stats responsive layout helpers */
+.hud-test-override .pt-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hud-test-override .pt-stat-card {
+  flex: 0 0 auto !important;
+  width: 100%;
+}
+
 /* Social Media Analyzer responsive layout helpers */
 .hud-test-override .sma-layout {
   display: grid;
@@ -198,6 +210,16 @@
 }
 
 @media (min-width: 768px) {
+  .hud-test-override .pt-stats {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .hud-test-override .pt-stat-card {
+    flex: 1 1 0 !important;
+    width: auto;
+  }
+
   .hud-test-override .phish-layout {
     grid-template-columns: 1fr 1fr;
     padding: 0;

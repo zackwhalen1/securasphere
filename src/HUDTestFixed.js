@@ -16,7 +16,7 @@ function HUDTestFixed() {
         // Show loading for a bit longer for the full effect
         setTimeout(() => {
           setIsLoading(false);
-        }, 2000); // 2 seconds total loading time
+        }, 1500); // 1.5 seconds total loading time
       }, 500);
 
       return () => clearTimeout(loadingTimer);

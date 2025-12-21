@@ -27,11 +27,11 @@ function SocialMediaAnalyzerTool() {
 
   React.useEffect(() => {
     if (isLoading) {
-      // Show loading animation for 2 seconds
+      // Show loading animation for 1.5 seconds
       const loadingTimer = setTimeout(() => {
         setTimeout(() => {
           setIsLoading(false);
-        }, 2000);
+        }, 1500);
       }, 500);
 
       return () => clearTimeout(loadingTimer);
