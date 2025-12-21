@@ -1,15 +1,12 @@
 import React from 'react';
-import './HUDTest.css';
-import { useNavigate } from 'react-router-dom';  
-import { ArrowLeft, ShieldCheck, Radar as RadarIcon} from "lucide-react";
+import './HUDTest.css'; 
+import { ShieldCheck } from "lucide-react";
 import "./LoadingAnimations.css";
 import Footer from './components/Footer';
 import BackButton from './components/BackButton';
 import AIHelper from './components/AIHelper';
 
 function PrivacyPage() {
-    const navigate = useNavigate();
-    const textHoverColor = '#d5fcfcff';
     
   return (
     <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
@@ -20,7 +17,7 @@ function PrivacyPage() {
       </div>
 
       {/* Radar positioned at very top center */}
-      <div className="relative z-10 flex justify-center pt-4 pb-8">
+      <div className="relative z-10 flex justify-center pt-12 pb-8">
         <div className="loading-radar">
           <div className="radar-ring-pulse"></div>
         </div>

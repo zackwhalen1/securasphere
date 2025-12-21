@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import './HUDTest.css';
 import AIHelper from './components/AIHelper';
 
@@ -8,7 +7,6 @@ import HUDNeonWorking from './HUDNeonWorking';
 import RadarLoading from './RadarLoading';
 
 function HUDTestFixed() {
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -45,8 +43,6 @@ function HUDTestFixed() {
       background: '#000',
       position: 'relative'
     }}>
-
-      {/* Toggle button removed - no longer needed */}
       
       {/* Show full HUD */}
       <div className="hud-test-override" style={{ position: 'relative', zIndex: 1 }}>

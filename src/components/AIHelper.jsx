@@ -70,7 +70,7 @@ function AIHelper() {
   return (
     <div className="status-box" style={{
         position: 'fixed',
-        bottom: window.innerWidth < 640 ? '40px' : '75px',
+        bottom: window.innerWidth < 640 ? '60px' : '100px',
         right: window.innerWidth < 640 ? '10px' : '20px',
         padding: window.innerWidth < 640 ? '5px' : '15px',
         borderRadius: '8px',
@@ -111,7 +111,7 @@ function AIHelper() {
               borderRadius: "8px",
               marginTop: window.innerWidth < 640 ? "1rem" : "2rem",
               position: 'fixed',
-              bottom: window.innerWidth < 640 ? '40px' : '75px',
+              bottom: window.innerWidth < 640 ? '60px' : '100px',
               right: window.innerWidth < 640 ? '10px' : '20px',
               left: window.innerWidth < 640 ? '10px' : 'auto',
               maxWidth: window.innerWidth < 640 ? 'calc(100vw - 20px)' : '600px',

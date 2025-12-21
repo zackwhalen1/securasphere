@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ShieldCheck, MailSearch, ArrowLeft, TrendingUp, Shield, AlertTriangle, Brain } from "lucide-react";
+import { ShieldCheck, MailSearch, TrendingUp, Shield, AlertTriangle, Brain } from "lucide-react";
 import "./LoadingAnimations.css";
 import "./HUDTest.css";
 import Footer from './components/Footer';
@@ -89,7 +89,7 @@ function PhishingTrainingPage() {
 
       {/* Header */}
       <header className="relative z-20 flex items-center justify-center px-8 py-6 backdrop-blur-sm">
-        <div className="flex items-center gap-3" style={{ paddingTop: '30px' }}>
+        <div className="flex items-center gap-3" style={{ paddingTop: '70px' }}>
           <ShieldCheck className="h-8 w-8 text-cyan-400 animate-pulse" />
           <h1 className="text-2xl font-bold" style={{ color: '#00ffff' }}>
             SECURASPHERE

@@ -1,12 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ShieldCheck, MailSearch, KeyRound, Radar as RadarIcon, ChevronRight } from "lucide-react";
 import "./LoadingAnimations.css";
 import Footer from "./components/Footer";
 
 const MotionLink = motion(Link);
-
 
 const modules = [
   { 
@@ -33,17 +32,17 @@ const modules = [
 ];
 
 function HUDNeonWorking() {
-  const navigate = useNavigate();
   return (
     <div className="relative min-h-screen bg-black text-cyan-100 overflow-hidden">
       {/* Animated Background Effects */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* Background Opaque Circle Thing*/}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-96 w-96 rounded-full opacity-30 blur-3xl bg-gradient-to-r from-cyan-400/25 to-blue-500/25 animate-pulse" style={{ top: '-110px' }}></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-96 w-96 rounded-full opacity-30 blur-3xl bg-gradient-to-r from-cyan-400/25 to-blue-500/25 animate-pulse" style={{ top: '-110px' }}>
+        </div>
       </div>
 
       {/* Radar positioned at very top center */}
-      <div className="relative z-10 flex justify-center pt-4 pb-8">
+      <div className="relative z-10 flex justify-center pt-12 pb-8">
         <div className="loading-radar">
           <div className="radar-ring-pulse"></div>
         </div>
