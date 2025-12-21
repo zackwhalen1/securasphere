@@ -112,11 +112,11 @@ function PhishingTrainerTool() {
                 className="space-y-6"
               >
             <div className="flex justify-center items-center space-x-4">
-              <Brain className="h-12 w-12 text-cyan-400" />
+              <Brain style={{ paddingLeft: '10px', paddingRight: '10px' }} className="h-12 w-12 text-cyan-400" />
               <h1 style={{ fontSize: '3rem' }} className="phish-title font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                 PHISHING EMAIL DETECTOR
               </h1>
-              <MailSearch className="h-12 w-12 text-purple-400" />
+              <MailSearch style={{ paddingLeft: '10px', paddingRight: '10px' }} className="h-12 w-12 text-purple-400" />
             </div>
             <p style={{ fontSize: '1.2rem', paddingBottom: '30px' }} className="text-cyan-300 max-w-3xl mx-auto">
               ANALYZE EMAIL CONTENT FOR PHISHING THREATS

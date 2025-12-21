@@ -249,11 +249,11 @@ function SocialMediaAnalyzerTool() {
                 className="space-y-6"
               >
             <div className="flex justify-center items-center space-x-4">
-              <Users className="h-12 w-12 text-cyan-400" />
+              <Users style={{ paddingLeft: '10px', paddingRight: '10px' }} className="h-12 w-12 text-cyan-400" />
               <h1 style={{ fontSize: '3rem' }} className="phish-title font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                 SOCIAL MEDIA ANALYZER
               </h1>
-              {getPlatformIcon()}
+              {React.cloneElement(getPlatformIcon(), { style: { paddingLeft: '10px', paddingRight: '10px' } })}
             </div>
             <p style={{ fontSize: '1.2rem', paddingBottom: '30px' }} className="text-cyan-300 max-w-3xl mx-auto">
               ANALYZE PROFILES FOR PRIVACY RISKS

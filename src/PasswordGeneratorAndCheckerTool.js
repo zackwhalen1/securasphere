@@ -329,11 +329,11 @@ function PasswordGeneratorAndCheckerTool() {
                 className="space-y-6"
               >
             <div className="flex justify-center items-center space-x-4">
-              <Lock className="h-12 w-12 text-cyan-400" />
-              <h1 style={{ fontSize: '3rem' }} className="font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <Lock style={{ paddingLeft: '10px', paddingRight: '10px' }} className="h-12 w-12 text-cyan-400" />
+              <h1 style={{ fontSize: '3rem' }} className="phish-title font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                 PASSWORD SECURITY TOOLS
               </h1>
-              <Key className="h-12 w-12 text-purple-400" />
+              <Key style={{ paddingLeft: '10px', paddingRight: '10px' }} className="h-12 w-12 text-purple-400" />
             </div>
             <p style={{ fontSize: '1.2rem', paddingBottom: '30px' }} className="text-cyan-300 max-w-3xl mx-auto">
               GENERATE AND ANALYZE SECURE PASSWORDS
