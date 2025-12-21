@@ -76,11 +76,11 @@ function SocialMediaAnalysisPage() {
   return (
     <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
       {/* Back button positioned like in HUD test */}
-      <BackButton message="Back to Home" path="/" />
+      <BackButton message="Home" path="/" />
       {/* AI Helper Component */}
       <AIHelper />
       {/* Forward button to social media tool page */}
-      <ForwardButton message="Go to Social Media Anazlyzer" path="/social-media-analyzer-tool" />
+      <ForwardButton message="Social Media Anazlyzer" path="/social-media-analyzer-tool" />
 
       {/* Animated Background Effects */}
       <div className="pointer-events-none absolute inset-0 z-0">

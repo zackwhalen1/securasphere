@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Shield, ArrowLeft, AlertTriangle, Brain, Users, Eye, Search, CheckCircle, XCircle, Instagram, Facebook } from 'lucide-react';
+import { Shield, AlertTriangle, Brain, Users, Eye, Search, CheckCircle, XCircle, Instagram, Facebook } from 'lucide-react';
 import axios from 'axios';
 import './LoadingAnimations.css';
 import './HUDTest.css';
@@ -13,7 +12,6 @@ import AIHelper from './components/AIHelper';
 const MotionDiv = motion.div;
 
 function SocialMediaAnalyzerTool() {
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [testResults, setTestResults] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -216,7 +214,7 @@ function SocialMediaAnalyzerTool() {
     return (
       <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
         {/* Back button during loading */}
-        <BackButton message='Back to Social Media Information' path='/social' />
+        <BackButton message='Social Media Info' path='/social' />
         {/* Loading animation */}
         <RadarLoading message="ANALYZING SOCIAL MEDIA CONTENT" />
       </div>
@@ -232,7 +230,7 @@ function SocialMediaAnalyzerTool() {
       </div>
 
       {/* Back button */}
-      <BackButton message='Back to Social Media Information' path='/social' />
+      <BackButton message='Social Media Info' path='/social' />
 
       {/* AI Helper Component */}
       <AIHelper />

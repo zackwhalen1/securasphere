@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, MailSearch, ArrowLeft, AlertTriangle, Brain, Shield, CheckCircle } from 'lucide-react';
+import { MailSearch, AlertTriangle, Brain, Shield, CheckCircle } from 'lucide-react';
 import axios from 'axios';
 import './LoadingAnimations.css';
 import './HUDTest.css';
@@ -16,7 +15,6 @@ const MotionDiv = motion.div;
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function PhishingTrainerTool() {
-  const navigate = useNavigate();
   const [emailText, setEmailText] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -81,7 +79,7 @@ function PhishingTrainerTool() {
     return (
       <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
         {/* Back button during loading */}
-        <BackButton message="Back to Phishing Info" path="/phishing" />
+        <BackButton message="Phishing Info" path="/phishing" />
 
         {/* Loading animation */}
         <RadarLoading message="PHISHING DETECTION SYSTEMS INITIALIZING" />
@@ -98,7 +96,7 @@ function PhishingTrainerTool() {
       </div>
 
       {/* Back button */}
-      <BackButton message="Back to Phishing Info" path="/phishing" />
+      <BackButton message="Phishing Info" path="/phishing" />
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">

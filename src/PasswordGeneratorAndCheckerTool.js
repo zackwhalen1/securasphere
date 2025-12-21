@@ -1,8 +1,7 @@
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Shield, ArrowLeft, AlertTriangle, Brain, Key, Eye, Search, CheckCircle, XCircle, Lock, Unlock, Copy, RefreshCw } from 'lucide-react';
+import { Shield, AlertTriangle, Brain, Key, Eye, Search, CheckCircle, XCircle, Lock, Copy, RefreshCw } from 'lucide-react';
 import './LoadingAnimations.css';
 import './HUDTest.css';
 import RadarLoading from './RadarLoading';
@@ -13,7 +12,6 @@ import AIHelper from './components/AIHelper';
 const MotionDiv = motion.div;
 
 function PasswordGeneratorAndCheckerTool() {
-  const navigate = useNavigate();
   const [inputPassword, setInputPassword] = useState('');
   const [generatedPassword, setGeneratedPassword] = useState('');
   const [passwordLength, setPasswordLength] = useState(16);
@@ -295,7 +293,7 @@ function PasswordGeneratorAndCheckerTool() {
     return (
       <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
         {/* Back button */}
-        <BackButton message="Back to Password Security" path="/passwordchecker" />
+        <BackButton message="Password Info" path="/passwordchecker" />
         
         {/* Show loading animation */}
         <RadarLoading message="PASSWORD SECURITY SYSTEMS INITIALIZING" />
@@ -315,7 +313,7 @@ function PasswordGeneratorAndCheckerTool() {
       <AIHelper />
 
       {/* Back button */}
-      <BackButton message="Back to Password Security" path="/passwordchecker" />
+      <BackButton message="Password Info" path="/passwordchecker" />
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">

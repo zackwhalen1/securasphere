@@ -12,7 +12,7 @@ function ContactPage() {
       {/* Animated Background Effects */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* Background Opaque Circle Thing*/}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-96 w-96 rounded-full opacity-30 blur-3xl bg-gradient-to-r from-cyan-400/25 to-blue-500/25 animate-pulse" style={{ top: '-110px' }}></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-96 w-96 rounded-full opacity-30 blur-3xl bg-gradient-to-r from-cyan-400/25 to-blue-500/25 animate-pulse" style={{ top: '-50px' }}></div>
       </div>
 
       {/* Radar positioned at very top center */}

@@ -75,11 +75,11 @@ function PhishingTrainingPage() {
   return (
     <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
       {/* Back button positioned like in HUD test */}
-      <BackButton message="Back to Home" path="/" />
+      <BackButton message="Home" path="/" />
       {/* AI Helper Component */}
       <AIHelper />
       {/* Forward button to phishing tool page */}
-      <ForwardButton message="Go to Phishing Email Detector" path="/phishing-trainer-tool" />
+      <ForwardButton message="Phishing Email Detector" path="/phishing-trainer-tool" />
       {/* Animated Background Effects */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute left-1/2 transform -translate-x-1/2 h-96 w-96 rounded-full opacity-30 blur-3xl bg-gradient-to-r from-cyan-400/25 to-blue-500/25 animate-pulse" style={{ top: '-110px' }}></div>

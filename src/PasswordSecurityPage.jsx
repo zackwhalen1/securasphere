@@ -75,13 +75,13 @@ function PasswordSecurityPage() {
   return (
     <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
       {/* Back button positioned like in HUD test */}
-      <BackButton message="Back to Home" path="/" />
+      <BackButton message="Home" path="/" />
       
       {/* AI Helper Component */}
       <AIHelper />
 
       {/* Forward button to password tool page */}
-      <ForwardButton message="Go to Password Tools" path="/password-generator-and-checker-tool" />
+      <ForwardButton message="Password Tools" path="/password-generator-and-checker-tool" />
 
       {/* Animated Background Effects */}
       <div className="pointer-events-none absolute inset-0 z-0">
