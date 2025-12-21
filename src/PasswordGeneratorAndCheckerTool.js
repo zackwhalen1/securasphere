@@ -318,7 +318,7 @@ function PasswordGeneratorAndCheckerTool() {
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Centered Container */}
-        <div className="w-full flex justify-center" style={{ paddingTop: '30px' }}>
+        <div className="w-full flex justify-center" style={{ paddingTop: '70px' }}>
           <div className="w-full max-w-4xl px-4">
             {/* Header */}
             <header className="pt-32 pb-8 text-center" style={{ paddingTop: '0px !important' }}>

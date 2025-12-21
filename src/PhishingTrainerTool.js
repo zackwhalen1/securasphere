@@ -77,7 +77,7 @@ function PhishingTrainerTool() {
   // Show loading screen first
   if (isLoading) {
     return (
-      <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
+      <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-x-hidden">
         {/* Back button during loading */}
         <BackButton message="Phishing Info" path="/phishing" />
 
@@ -88,7 +88,7 @@ function PhishingTrainerTool() {
   }
 
   return (
-    <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
+    <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-x-hidden">
       {/* Animated background grid */}
       <div className="absolute inset-0 z-0">
         <div className="grid-background opacity-20"></div>
@@ -101,8 +101,8 @@ function PhishingTrainerTool() {
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Centered Container */}
-        <div className="w-full flex justify-center" style={{ paddingTop: '30px' }}>
-          <div className="w-full max-w-4xl px-4">
+        <div className="w-full flex justify-center" style={{ paddingTop: '70px' }}>
+          <div className="w-full max-w-6xl px-4">
             {/* Header */}
             <header className="pt-32 pb-8 text-center" style={{ paddingTop: '0px !important' }}>
               <MotionDiv
@@ -113,19 +113,114 @@ function PhishingTrainerTool() {
               >
             <div className="flex justify-center items-center space-x-4">
               <Brain className="h-12 w-12 text-cyan-400" />
-              <h1 style={{ fontSize: '3rem' }} className="font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                &nbsp;&nbsp;PHISHING&nbsp;EMAIL&nbsp;DETECTOR&nbsp;&nbsp;
+              <h1 style={{ fontSize: '3rem' }} className="phish-title font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                PHISHING EMAIL DETECTOR
               </h1>
               <MailSearch className="h-12 w-12 text-purple-400" />
             </div>
             <p style={{ fontSize: '1.2rem', paddingBottom: '30px' }} className="text-cyan-300 max-w-3xl mx-auto">
-              &nbsp;&nbsp;ANALYZE&nbsp;EMAIL&nbsp;CONTENT&nbsp;FOR&nbsp;PHISHING&nbsp;THREATS&nbsp;&nbsp;
+              ANALYZE EMAIL CONTENT FOR PHISHING THREATS
             </p>
             
             {/* Two Column Layout */}
-            <div className="pt-8 flex flex-col lg:flex-row gap-8">
+            <div className="pt-8 phish-layout">
+              {/* Right Column - Main Tool Interface */}
+              <div className="phish-right min-w-0">
+                {/* Input Section */}
+                <MotionDiv
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-8"
+                >
+                  <div className="space-y-6">
+                    <div>
+                      <label 
+                        htmlFor="email-text" 
+                        style={{ fontSize: '1.1rem' }}
+                        className="block text-cyan-300 mb-3 font-mono"
+                      >
+                        &nbsp;&nbsp;EMAIL&nbsp;CONTENT:&nbsp;&nbsp;
+                      </label>
+                      <textarea
+                        id="email-text"
+                        value={emailText}
+                        onChange={(e) => setEmailText(e.target.value)}
+                        placeholder="Paste the email content here for analysis..."
+                        rows={10}
+                        disabled={loading}
+                        className="w-full bg-black/60 border border-cyan-500/50 rounded-md p-4 text-cyan-100 font-mono focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 focus:outline-none resize-none black-text-textarea"
+                        style={{
+                          minHeight: '200px',
+                          backdropFilter: 'blur(5px)'
+                        }}
+                      />
+                    </div>
+
+                    <div className="flex space-x-4 justify-center">
+                      <button
+                        onClick={analyzeEmail}
+                        disabled={loading || !emailText.trim()}
+                        className="group relative px-8 py-3 bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-mono font-bold rounded-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        style={{
+                          boxShadow: loading ? 'none' : '0 0 20px rgba(0, 255, 255, 0.3)',
+                          transform: loading ? 'scale(0.95)' : 'scale(1)'
+                        }}
+                        onMouseOver={(e) => {
+                          if (!loading && emailText.trim()) {
+                            e.target.style.transform = 'scale(1.05)';
+                            e.target.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.6)';
+                          }
+                        }}
+                        onMouseOut={(e) => {
+                          if (!loading) {
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.3)';
+                          }
+                        }}
+                      >
+                        {loading ? (
+                          <span className="flex items-center space-x-2">
+                            <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                            <span>ANALYZING...</span>
+                          </span>
+                        ) : (
+                          <span className="flex items-center space-x-2">
+                            <Brain className="h-4 w-4" />
+                            <span>ANALYZE EMAIL</span>
+                          </span>
+                        )}
+                      </button>
+
+                      <button
+                        onClick={clearAnalysis}
+                        disabled={loading}
+                        className="px-8 py-3 bg-transparent border border-cyan-500 text-cyan-400 font-mono font-bold rounded-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        onMouseOver={(e) => {
+                          if (!loading) {
+                            e.target.style.background = 'rgba(0, 255, 255, 0.1)';
+                            e.target.style.transform = 'scale(1.05)';
+                            e.target.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.4)';
+                          }
+                        }}
+                        onMouseOut={(e) => {
+                          if (!loading) {
+                            e.target.style.background = 'transparent';
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.boxShadow = 'none';
+                          }
+                        }}
+                      >
+                        CLEAR
+                      </button>
+                    </div>
+                  </div>
+                </MotionDiv>
+              </div>
+
               {/* Left Column - Results and How It Works */}
-              <div className="w-full lg:w-1/2 space-y-8">
+              <div className="phish-left min-w-0 space-y-8">
+                <div className="phish-left-results space-y-8">
                 {/* Error Message */}
                 {error && (
                   <MotionDiv
@@ -236,23 +331,25 @@ function PhishingTrainerTool() {
               </MotionDiv>
             )}
 
+                </div>
+
             {/* How It Works Section */}
             <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-8"
+              className="phish-how bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-6 lg:p-8"
             >
-              <div className="text-center space-y-4">
+              <div className="text-center space-y-3">
                 <div className="flex justify-center items-center space-x-3">
                   <Shield className="h-8 w-8 text-cyan-400" />
                   <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold">
-                    &nbsp;&nbsp;HOW&nbsp;THIS&nbsp;WORKS&nbsp;&nbsp;
+                    HOW THIS WORKS
                   </h3>
                   <Brain className="h-8 w-8 text-purple-400" />
                 </div>
                 
-                <div className="space-y-4 text-cyan-200 font-mono">
+                <div className="space-y-3 text-cyan-200 font-mono text-sm md:text-base leading-snug">
                   <p>
                     Our AI model has been trained on thousands of emails to identify common 
                     phishing patterns. It analyzes the language, structure, and content of 
@@ -262,100 +359,6 @@ function PhishingTrainerTool() {
                     REMEMBER: This is a learning tool. Always use your best 
                     judgment and consult with IT security if you're unsure about an email.
                   </p>
-                </div>
-              </div>
-            </MotionDiv>
-              </div>
-              
-              {/* Right Column - Main Tool Interface */}
-              <div className="w-full lg:w-1/2">
-                {/* Input Section */}
-                <MotionDiv
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-8"
-                >
-              <div className="space-y-6">
-                <div>
-                  <label 
-                    htmlFor="email-text" 
-                    style={{ fontSize: '1.1rem' }}
-                    className="block text-cyan-300 mb-3 font-mono"
-                  >
-                    &nbsp;&nbsp;EMAIL&nbsp;CONTENT:&nbsp;&nbsp;
-                  </label>
-                  <textarea
-                    id="email-text"
-                    value={emailText}
-                    onChange={(e) => setEmailText(e.target.value)}
-                    placeholder="Paste the email content here for analysis..."
-                    rows={10}
-                    disabled={loading}
-                    className="w-full bg-black/60 border border-cyan-500/50 rounded-md p-4 text-cyan-100 font-mono focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 focus:outline-none resize-none black-text-textarea"
-                    style={{
-                      minHeight: '200px',
-                      backdropFilter: 'blur(5px)'
-                    }}
-                  />
-                </div>
-
-                <div className="flex space-x-4 justify-center">
-                  <button
-                    onClick={analyzeEmail}
-                    disabled={loading || !emailText.trim()}
-                    className="group relative px-8 py-3 bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-mono font-bold rounded-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{
-                      boxShadow: loading ? 'none' : '0 0 20px rgba(0, 255, 255, 0.3)',
-                      transform: loading ? 'scale(0.95)' : 'scale(1)'
-                    }}
-                    onMouseOver={(e) => {
-                      if (!loading && emailText.trim()) {
-                        e.target.style.transform = 'scale(1.05)';
-                        e.target.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.6)';
-                      }
-                    }}
-                    onMouseOut={(e) => {
-                      if (!loading) {
-                        e.target.style.transform = 'scale(1)';
-                        e.target.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.3)';
-                      }
-                    }}
-                  >
-                    {loading ? (
-                      <span className="flex items-center space-x-2">
-                        <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
-                        <span>ANALYZING...</span>
-                      </span>
-                    ) : (
-                      <span className="flex items-center space-x-2">
-                        <Brain className="h-4 w-4" />
-                        <span>ANALYZE EMAIL</span>
-                      </span>
-                    )}
-                  </button>
-
-                  <button
-                    onClick={clearAnalysis}
-                    disabled={loading}
-                    className="px-8 py-3 bg-transparent border border-cyan-500 text-cyan-400 font-mono font-bold rounded-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    onMouseOver={(e) => {
-                      if (!loading) {
-                        e.target.style.background = 'rgba(0, 255, 255, 0.1)';
-                        e.target.style.transform = 'scale(1.05)';
-                        e.target.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.4)';
-                      }
-                    }}
-                    onMouseOut={(e) => {
-                      if (!loading) {
-                        e.target.style.background = 'transparent';
-                        e.target.style.transform = 'scale(1)';
-                        e.target.style.boxShadow = 'none';
-                      }
-                    }}
-                  >
-                    CLEAR
-                  </button>
                 </div>
               </div>
             </MotionDiv>

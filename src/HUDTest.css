@@ -102,6 +102,131 @@
   color: #666666 !important;
 }
 
+/* Social Media Analyzer responsive layout helpers */
+.hud-test-override .sma-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 0 0.75rem 2rem;
+}
+
+.hud-test-override .sma-left,
+.hud-test-override .sma-right {
+  min-width: 0;
+}
+
+/* Mobile (single column): right column first, left column second */
+.hud-test-override .sma-right {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.hud-test-override .sma-left {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Phishing Trainer responsive layout helpers */
+.hud-test-override .phish-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 0 0.75rem 2rem;
+}
+
+.hud-test-override .phish-left,
+.hud-test-override .phish-right {
+  min-width: 0;
+}
+
+.hud-test-override .phish-title {
+  line-height: 1.05;
+}
+
+.hud-test-override .phish-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Mobile: results first, how-it-works last */
+.hud-test-override .phish-left-results {
+  order: 1;
+}
+
+.hud-test-override .phish-how {
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .hud-test-override .phish-layout {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+
+  .hud-test-override .phish-title {
+    line-height: 1.1;
+  }
+
+  .hud-test-override .phish-left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hud-test-override .phish-right {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* md+: how-it-works first (top-left), results below */
+  .hud-test-override .phish-how {
+    order: 1;
+  }
+
+  .hud-test-override .phish-left-results {
+    order: 2;
+  }
+}
+
+/* Mobile: results first, how-it-works last */
+.hud-test-override .sma-left-results {
+  order: 1;
+}
+
+.hud-test-override .sma-how {
+  order: 2;
+}
+
+/* md+ (two columns): left and right side-by-side, align how-it-works with platform selector */
+@media (min-width: 768px) {
+  .hud-test-override .sma-layout {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+
+  .hud-test-override .sma-left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hud-test-override .sma-right {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* md+: how-it-works first, results below it */
+  .hud-test-override .sma-how {
+    order: 1;
+  }
+
+  .hud-test-override .sma-left-results {
+    order: 2;
+  }
+}
+
 .ai-helper {
   animation: hudSlideIn 0.3s ease-out;
 }

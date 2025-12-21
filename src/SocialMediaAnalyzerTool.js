@@ -212,7 +212,7 @@ function SocialMediaAnalyzerTool() {
 
   if (isLoading) {
     return (
-      <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
+      <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-x-hidden">
         {/* Back button during loading */}
         <BackButton message='Social Media Info' path='/social' />
         {/* Loading animation */}
@@ -222,7 +222,7 @@ function SocialMediaAnalyzerTool() {
   }
 
   return (
-    <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
+    <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-x-hidden">
       {/* Animated background grid */}
       <div className="absolute inset-0 z-0">
         <div className="grid-background opacity-20"></div>
@@ -238,8 +238,8 @@ function SocialMediaAnalyzerTool() {
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Centered Container */}
-        <div className="w-full flex justify-center" style={{ paddingTop: '30px' }}>
-          <div className="w-full max-w-4xl px-4">
+        <div className="w-full flex justify-center" style={{ paddingTop: '70px' }}>
+          <div className="w-full max-w-6xl px-4">
             {/* Header */}
             <header className="pt-32 pb-8 text-center" style={{ paddingTop: '0px !important' }}>
               <MotionDiv
@@ -250,232 +250,19 @@ function SocialMediaAnalyzerTool() {
               >
             <div className="flex justify-center items-center space-x-4">
               <Users className="h-12 w-12 text-cyan-400" />
-              <h1 style={{ fontSize: '3rem' }} className="font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                &nbsp;&nbsp;SOCIAL&nbsp;MEDIA&nbsp;ANALYZER&nbsp;&nbsp;
+              <h1 style={{ fontSize: '3rem' }} className="phish-title font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                SOCIAL MEDIA ANALYZER
               </h1>
               {getPlatformIcon()}
             </div>
             <p style={{ fontSize: '1.2rem', paddingBottom: '30px' }} className="text-cyan-300 max-w-3xl mx-auto">
-              &nbsp;&nbsp;ANALYZE&nbsp;PROFILES&nbsp;FOR&nbsp;PRIVACY&nbsp;RISKS&nbsp;&nbsp;
+              ANALYZE PROFILES FOR PRIVACY RISKS
             </p>
             
             {/* Two Column Layout */}
-            <div className="pt-8 flex flex-col lg:flex-row gap-8">
-              {/* Left Column - Results and How It Works */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                {/* Error Message */}
-                {error && (
-                  <MotionDiv
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="bg-red-900/40 backdrop-blur-md border border-red-500/50 rounded-lg p-6 text-center"
-                  >
-                    <div className="flex items-center justify-center space-x-3">
-                      <AlertTriangle className="h-6 w-6 text-red-400" />
-                      <p className="text-red-300 font-mono">&nbsp;&nbsp;{error}&nbsp;&nbsp;</p>
-                    </div>
-                  </MotionDiv>
-                )}
-
-                {/* Results Section */}
-                {testResults && !testResults.error && (
-                  <MotionDiv
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-6"
-                  >
-                {/* Risk Score Card */}
-                <div 
-                  className="bg-black/40 backdrop-blur-md border rounded-lg p-8 text-center"
-                  style={{
-                    borderColor: getRiskColor(testResults.riskScore) + '50',
-                    boxShadow: `0 0 30px ${getRiskColor(testResults.riskScore)}30`
-                  }}
-                >
-                  <div className="space-y-6">
-                    <div className="flex justify-center" style={{ color: getRiskColor(testResults.riskScore) }}>
-                      {getRiskIcon(testResults.riskScore)}
-                    </div>
-                    
-                    <div>
-                      <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold mb-2">
-                        &nbsp;&nbsp;PRIVACY&nbsp;RISK&nbsp;SCORE&nbsp;&nbsp;
-                      </h3>
-                      <div 
-                        style={{ 
-                          fontSize: '3rem',
-                          color: getRiskColor(testResults.riskScore)
-                        }}
-                        className="font-mono font-bold"
-                      >
-                        {testResults.riskScore}/10
-                      </div>
-                      <div 
-                        style={{ 
-                          fontSize: '1.2rem',
-                          color: getRiskColor(testResults.riskScore)
-                        }}
-                        className="font-mono font-bold mt-2"
-                      >
-                        {testResults.riskScore >= 7 ? 'HIGH RISK' : 
-                         testResults.riskScore >= 4 ? 'MEDIUM RISK' : 
-                         testResults.riskScore >= 2 ? 'LOW RISK' : 'SECURE'}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                      <div className="space-y-2">
-                        <p className="font-mono">
-                          <span className="text-cyan-400">PLATFORM:</span> 
-                          <span className="ml-2 text-white uppercase">
-                            {testResults.platform}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="space-y-2">
-                        <p className="font-mono">
-                          <span className="text-cyan-400">PII FOUND:</span> 
-                          <span className="ml-2 text-white">
-                            {testResults.findings?.length || 0} items
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* PII Findings */}
-                {testResults.findings && testResults.findings.length > 0 && (
-                  <div className="bg-black/40 backdrop-blur-md border border-orange-500/30 rounded-lg p-6">
-                    <h4 className="text-orange-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
-                      🔍 &nbsp;&nbsp;PERSONAL&nbsp;INFORMATION&nbsp;DETECTED&nbsp;&nbsp; 🔍
-                    </h4>
-                    <div className="space-y-4">
-                      {testResults.findings.map((finding, index) => (
-                        <div key={index} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-cyan-400 font-mono font-bold text-sm">
-                              {finding.type.toUpperCase()}
-                            </span>
-                            <span 
-                              className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                              style={{ backgroundColor: getSeverityColor(finding.severity) }}
-                            >
-                              {finding.confidence}% CONFIDENCE
-                            </span>
-                          </div>
-                          <div className="text-white font-mono text-sm mb-2">
-                            <span className="text-gray-400">FOUND:</span> "{finding.value}"
-                          </div>
-                          {finding.context && (
-                            <div className="text-gray-400 font-mono text-xs italic">
-                              <span className="text-gray-300">CONTEXT:</span> {finding.context}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Recommendations */}
-                {testResults.recommendations && testResults.recommendations.length > 0 && (
-                  <div className="bg-green-900/20 backdrop-blur-md border border-green-500/30 rounded-lg p-6">
-                    <h4 className="text-green-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
-                      💡 &nbsp;&nbsp;SECURITY&nbsp;RECOMMENDATIONS&nbsp;&nbsp; 💡
-                    </h4>
-                    <div className="space-y-3">
-                      {testResults.recommendations.map((rec, index) => (
-                        <div key={index} className="bg-green-900/20 rounded-lg p-4 border border-green-500/20">
-                          <div className="text-green-300 font-mono font-bold text-sm mb-2">
-                            {rec.title.toUpperCase()}
-                          </div>
-                          <div className="text-green-200 font-mono text-sm">
-                            {rec.description}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </MotionDiv>
-            )}
-
-            {/* Error Results */}
-            {testResults && testResults.error && (
-              <MotionDiv
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className="bg-red-900/20 backdrop-blur-md border border-red-500/30 rounded-lg p-6"
-              >
-                <h4 className="text-red-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
-                  ❌ &nbsp;&nbsp;ANALYSIS&nbsp;FAILED&nbsp;&nbsp; ❌
-                </h4>
-                <p className="text-red-300 font-mono mb-4 text-center">
-                  {testResults.error}
-                </p>
-                
-                {testResults.troubleshooting && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <h5 className="text-red-400 font-mono font-bold mb-2">COMMON ISSUES:</h5>
-                      <ul className="space-y-1 text-red-200 font-mono text-sm">
-                        {testResults.troubleshooting.commonIssues.map((issue, index) => (
-                          <li key={index}>• {issue}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h5 className="text-green-400 font-mono font-bold mb-2">SOLUTIONS:</h5>
-                      <ul className="space-y-1 text-green-200 font-mono text-sm">
-                        {testResults.troubleshooting.solutions.map((solution, index) => (
-                          <li key={index}>• {solution}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </MotionDiv>
-            )}
-
-            {/* How It Works Section */}
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-8"
-            >
-              <div className="text-center space-y-4">
-                <div className="flex justify-center items-center space-x-3">
-                  <Shield className="h-8 w-8 text-cyan-400" />
-                  <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold">
-                    &nbsp;&nbsp;HOW&nbsp;THIS&nbsp;WORKS&nbsp;&nbsp;
-                  </h3>
-                  <Brain className="h-8 w-8 text-purple-400" />
-                </div>
-                
-                <div className="space-y-4 text-cyan-200 font-mono">
-                  <p>
-                    Our AI system analyzes public social media profiles to detect exposed 
-                    personal information (PII) that could be used by malicious actors.
-                  </p>
-                  <p>
-                    It scans for emails, phone numbers, addresses, and other sensitive data 
-                    that might put your privacy at risk.
-                  </p>
-                  <p className="text-cyan-400 font-bold">
-                    REMEMBER: This tool only analyzes public information. Always review your 
-                    privacy settings and think before you post.
-                  </p>
-                </div>
-              </div>
-            </MotionDiv>
-              </div>
-              
+            <div className="pt-8 sma-layout">
               {/* Right Column - Main Tool Interface */}
-              <div className="w-full lg:w-1/2">
+              <div className="sma-right min-w-0">
                 {/* Platform Selector */}
                 <MotionDiv
                   initial={{ opacity: 0, x: 30 }}
@@ -536,10 +323,10 @@ function SocialMediaAnalyzerTool() {
                     {/* Service Status */}
                     {currentServiceStatus && (
                       <div className="text-center" style={{ paddingTop: '3rem', paddingBottom: '1.5rem' }}>
-                        <div 
+                        <div
                           className={`inline-block px-4 py-2 rounded-lg font-mono text-sm ${
-                            currentServiceStatus.valid 
-                              ? 'bg-green-900/30 border border-green-500/50 text-green-300' 
+                            currentServiceStatus.valid
+                              ? 'bg-green-900/30 border border-green-500/50 text-green-300'
                               : 'bg-red-900/30 border border-red-500/50 text-red-300'
                           }`}
                           style={{ border: 'black' }}
@@ -564,8 +351,8 @@ function SocialMediaAnalyzerTool() {
                 >
                   <div className="space-y-6">
                     <div>
-                      <label 
-                        htmlFor="profile-input" 
+                      <label
+                        htmlFor="profile-input"
                         style={{ fontSize: '1.1rem', paddingBottom: '0.5rem' }}
                         className="block text-cyan-300 mb-3 font-mono"
                       >
@@ -616,6 +403,221 @@ function SocialMediaAnalyzerTool() {
                       >
                         CLEAR
                       </button>
+                    </div>
+                  </div>
+                </MotionDiv>
+              </div>
+
+              {/* Left Column - Results and How It Works */}
+              <div className="sma-left">
+                <div className="sma-left-results space-y-8">
+                  {/* Error Message */}
+                  {error && (
+                    <MotionDiv
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="bg-red-900/40 backdrop-blur-md border border-red-500/50 rounded-lg p-6 text-center"
+                    >
+                      <div className="flex items-center justify-center space-x-3">
+                        <AlertTriangle className="h-6 w-6 text-red-400" />
+                        <p className="text-red-300 font-mono">&nbsp;&nbsp;{error}&nbsp;&nbsp;</p>
+                      </div>
+                    </MotionDiv>
+                  )}
+
+                  {/* Results Section */}
+                  {testResults && !testResults.error && (
+                    <MotionDiv
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="space-y-6"
+                    >
+                      {/* Risk Score Card */}
+                      <div
+                        className="bg-black/40 backdrop-blur-md border rounded-lg p-8 text-center"
+                        style={{
+                          borderColor: getRiskColor(testResults.riskScore) + '50',
+                          boxShadow: `0 0 30px ${getRiskColor(testResults.riskScore)}30`
+                        }}
+                      >
+                        <div className="space-y-6">
+                          <div className="flex justify-center" style={{ color: getRiskColor(testResults.riskScore) }}>
+                            {getRiskIcon(testResults.riskScore)}
+                          </div>
+
+                          <div>
+                            <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold mb-2">
+                              &nbsp;&nbsp;PRIVACY&nbsp;RISK&nbsp;SCORE&nbsp;&nbsp;
+                            </h3>
+                            <div
+                              style={{
+                                fontSize: '3rem',
+                                color: getRiskColor(testResults.riskScore)
+                              }}
+                              className="font-mono font-bold"
+                            >
+                              {testResults.riskScore}/10
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '1.2rem',
+                                color: getRiskColor(testResults.riskScore)
+                              }}
+                              className="font-mono font-bold mt-2"
+                            >
+                              {testResults.riskScore >= 7 ? 'HIGH RISK' :
+                                testResults.riskScore >= 4 ? 'MEDIUM RISK' :
+                                  testResults.riskScore >= 2 ? 'LOW RISK' : 'SECURE'}
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                            <div className="space-y-2">
+                              <p className="font-mono">
+                                <span className="text-cyan-400">PLATFORM:</span>
+                                <span className="ml-2 text-white uppercase">
+                                  {testResults.platform}
+                                </span>
+                              </p>
+                            </div>
+                            <div className="space-y-2">
+                              <p className="font-mono">
+                                <span className="text-cyan-400">PII FOUND:</span>
+                                <span className="ml-2 text-white">
+                                  {testResults.findings?.length || 0} items
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* PII Findings */}
+                      {testResults.findings && testResults.findings.length > 0 && (
+                        <div className="bg-black/40 backdrop-blur-md border border-orange-500/30 rounded-lg p-6">
+                          <h4 className="text-orange-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
+                            🔍 &nbsp;&nbsp;PERSONAL&nbsp;INFORMATION&nbsp;DETECTED&nbsp;&nbsp; 🔍
+                          </h4>
+                          <div className="space-y-4">
+                            {testResults.findings.map((finding, index) => (
+                              <div key={index} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-cyan-400 font-mono font-bold text-sm">
+                                    {finding.type.toUpperCase()}
+                                  </span>
+                                  <span
+                                    className="px-3 py-1 rounded-full text-xs font-bold text-white"
+                                    style={{ backgroundColor: getSeverityColor(finding.severity) }}
+                                  >
+                                    {finding.confidence}% CONFIDENCE
+                                  </span>
+                                </div>
+                                <div className="text-white font-mono text-sm mb-2">
+                                  <span className="text-gray-400">FOUND:</span> "{finding.value}"
+                                </div>
+                                {finding.context && (
+                                  <div className="text-gray-400 font-mono text-xs italic">
+                                    <span className="text-gray-300">CONTEXT:</span> {finding.context}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Recommendations */}
+                      {testResults.recommendations && testResults.recommendations.length > 0 && (
+                        <div className="bg-green-900/20 backdrop-blur-md border border-green-500/30 rounded-lg p-6">
+                          <h4 className="text-green-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
+                            💡 &nbsp;&nbsp;SECURITY&nbsp;RECOMMENDATIONS&nbsp;&nbsp; 💡
+                          </h4>
+                          <div className="space-y-3">
+                            {testResults.recommendations.map((rec, index) => (
+                              <div key={index} className="bg-green-900/20 rounded-lg p-4 border border-green-500/20">
+                                <div className="text-green-300 font-mono font-bold text-sm mb-2">
+                                  {rec.title.toUpperCase()}
+                                </div>
+                                <div className="text-green-200 font-mono text-sm">
+                                  {rec.description}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </MotionDiv>
+                  )}
+
+                  {/* Error Results */}
+                  {testResults && testResults.error && (
+                    <MotionDiv
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="bg-red-900/20 backdrop-blur-md border border-red-500/30 rounded-lg p-6"
+                    >
+                      <h4 className="text-red-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
+                        ❌ &nbsp;&nbsp;ANALYSIS&nbsp;FAILED&nbsp;&nbsp; ❌
+                      </h4>
+                      <p className="text-red-300 font-mono mb-4 text-center">
+                        {testResults.error}
+                      </p>
+
+                      {testResults.troubleshooting && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="text-red-400 font-mono font-bold mb-2">COMMON ISSUES:</h5>
+                            <ul className="space-y-1 text-red-200 font-mono text-sm">
+                              {testResults.troubleshooting.commonIssues.map((issue, index) => (
+                                <li key={index}>• {issue}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="text-green-400 font-mono font-bold mb-2">SOLUTIONS:</h5>
+                            <ul className="space-y-1 text-green-200 font-mono text-sm">
+                              {testResults.troubleshooting.solutions.map((solution, index) => (
+                                <li key={index}>• {solution}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </MotionDiv>
+                  )}
+                </div>
+
+                {/* How It Works Section */}
+                <MotionDiv
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="sma-how bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-6 lg:p-8"
+                >
+                  <div className="text-center space-y-3">
+                    <div className="flex justify-center items-center space-x-3">
+                      <Shield className="h-8 w-8 text-cyan-400" />
+                      <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold">
+                        HOW THIS WORKS
+                      </h3>
+                      <Brain className="h-8 w-8 text-purple-400" />
+                    </div>
+
+                    <div className="space-y-3 text-cyan-200 font-mono text-sm md:text-base leading-snug">
+                      <p>
+                        Our AI system analyzes public social media profiles to detect exposed
+                        personal information (PII) that could be used by malicious actors.
+                      </p>
+                      <p>
+                        It scans for emails, phone numbers, addresses, and other sensitive data
+                        that might put your privacy at risk.
+                      </p>
+                      <p className="text-cyan-400 font-bold">
+                        REMEMBER: This tool only analyzes public information. Always review your
+                        privacy settings and think before you post.
+                      </p>
                     </div>
                   </div>
                 </MotionDiv>
