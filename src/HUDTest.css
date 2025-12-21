@@ -137,6 +137,42 @@
   padding: 0 0.75rem 2rem;
 }
 
+/* Password Tool responsive layout helpers */
+.hud-test-override .pass-layout {
+  padding: 0 0.75rem 2rem;
+}
+
+.hud-test-override .pass-left,
+.hud-test-override .pass-right {
+  min-width: 0;
+}
+
+.hud-test-override .pass-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Mobile (single column): right column first, left column second */
+.hud-test-override .pass-right {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.hud-test-override .pass-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* Mobile: results first, how-it-works last */
+.hud-test-override .pass-left-results {
+  order: 1;
+}
+
+.hud-test-override .pass-how {
+  order: 2;
+}
+
 .hud-test-override .phish-left,
 .hud-test-override .phish-right {
   min-width: 0;
@@ -165,6 +201,29 @@
   .hud-test-override .phish-layout {
     grid-template-columns: 1fr 1fr;
     padding: 0;
+  }
+
+  .hud-test-override .pass-layout {
+    padding: 0;
+  }
+
+  .hud-test-override .pass-left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hud-test-override .pass-right {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* md+: how-it-works first (top-left), results below */
+  .hud-test-override .pass-how {
+    order: 1;
+  }
+
+  .hud-test-override .pass-left-results {
+    order: 2;
   }
 
   .hud-test-override .phish-title {

@@ -291,7 +291,7 @@ function PasswordGeneratorAndCheckerTool() {
 
   if (isLoading) {
     return (
-      <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
+      <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-x-hidden">
         {/* Back button */}
         <BackButton message="Password Info" path="/passwordchecker" />
         
@@ -302,7 +302,7 @@ function PasswordGeneratorAndCheckerTool() {
   }
 
   return (
-    <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-hidden">
+    <div className="hud-test-override relative min-h-screen bg-black text-cyan-100 overflow-x-hidden">
       {/* Animated background grid */}
       <div className="absolute inset-0 z-0">
         <div className="grid-background opacity-20"></div>
@@ -319,7 +319,7 @@ function PasswordGeneratorAndCheckerTool() {
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Centered Container */}
         <div className="w-full flex justify-center" style={{ paddingTop: '70px' }}>
-          <div className="w-full max-w-4xl px-4">
+          <div className="w-full max-w-6xl px-4">
             {/* Header */}
             <header className="pt-32 pb-8 text-center" style={{ paddingTop: '0px !important' }}>
               <MotionDiv
@@ -331,192 +331,194 @@ function PasswordGeneratorAndCheckerTool() {
             <div className="flex justify-center items-center space-x-4">
               <Lock className="h-12 w-12 text-cyan-400" />
               <h1 style={{ fontSize: '3rem' }} className="font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                &nbsp;&nbsp;PASSWORD&nbsp;SECURITY&nbsp;TOOLS&nbsp;&nbsp;
+                PASSWORD SECURITY TOOLS
               </h1>
               <Key className="h-12 w-12 text-purple-400" />
             </div>
             <p style={{ fontSize: '1.2rem', paddingBottom: '30px' }} className="text-cyan-300 max-w-3xl mx-auto">
-              &nbsp;&nbsp;GENERATE&nbsp;AND&nbsp;ANALYZE&nbsp;SECURE&nbsp;PASSWORDS&nbsp;&nbsp;
+              GENERATE AND ANALYZE SECURE PASSWORDS
             </p>
             
             {/* Two Column Layout */}
-            <div className="pt-8 flex flex-col lg:flex-row gap-8">
-              {/* Left Column - Results and How It Works */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                {/* Results Section */}
-                {checkResults && !checkResults.error && (
-                  <MotionDiv
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-6"
-                  >
-                    {/* Password Security Score */}
-                    <div 
-                      className="bg-black/40 backdrop-blur-md border rounded-lg p-8 text-center"
-                      style={{
-                        borderColor: getRiskColor(checkResults.riskScore) + '50',
-                        boxShadow: `0 0 30px ${getRiskColor(checkResults.riskScore)}30`
-                      }}
+            <div className="pt-8 grid grid-cols-1 md:grid-cols-2 gap-8 pass-layout">
+              {/* Left Column - Results + How It Works */}
+              <div className="pass-left">
+                <div className="pass-left-results">
+                  {/* Results Section */}
+                  {checkResults && !checkResults.error && (
+                    <MotionDiv
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="space-y-6"
                     >
-                      <div className="space-y-6">
-                        <div className="flex justify-center" style={{ color: getRiskColor(checkResults.riskScore) }}>
-                          {getRiskIcon(checkResults.riskScore)}
-                        </div>
-                        
-                        <div>
-                          <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold mb-2">
-                            &nbsp;&nbsp;PASSWORD&nbsp;SECURITY&nbsp;SCORE&nbsp;&nbsp;
-                          </h3>
-                          <div 
-                            style={{ 
-                              fontSize: '3rem',
-                              color: getRiskColor(checkResults.riskScore)
-                            }}
-                            className="font-mono font-bold"
-                          >
-                            {7 - checkResults.riskScore}/7
+                      {/* Password Security Score */}
+                      <div 
+                        className="bg-black/40 backdrop-blur-md border rounded-lg p-8 text-center"
+                        style={{
+                          borderColor: getRiskColor(checkResults.riskScore) + '50',
+                          boxShadow: `0 0 30px ${getRiskColor(checkResults.riskScore)}30`
+                        }}
+                      >
+                        <div className="space-y-6">
+                          <div className="flex justify-center" style={{ color: getRiskColor(checkResults.riskScore) }}>
+                            {getRiskIcon(checkResults.riskScore)}
                           </div>
-                          <div 
-                            style={{ 
-                              fontSize: '1.2rem',
-                              color: getRiskColor(checkResults.riskScore)
-                            }}
-                            className="font-mono font-bold mt-2"
-                          >
-                            {checkResults.riskScore >= 7 ? 'WEAK' : 
-                             checkResults.riskScore >= 4 ? 'MODERATE' : 
-                             checkResults.riskScore >= 2 ? 'STRONG' : 'EXCELLENT'}
+                          
+                          <div>
+                            <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold mb-2">
+                              &nbsp;&nbsp;PASSWORD&nbsp;SECURITY&nbsp;SCORE&nbsp;&nbsp;
+                            </h3>
+                            <div 
+                              style={{ 
+                                fontSize: '3rem',
+                                color: getRiskColor(checkResults.riskScore)
+                              }}
+                              className="font-mono font-bold"
+                            >
+                              {7 - checkResults.riskScore}/7
+                            </div>
+                            <div 
+                              style={{ 
+                                fontSize: '1.2rem',
+                                color: getRiskColor(checkResults.riskScore)
+                              }}
+                              className="font-mono font-bold mt-2"
+                            >
+                              {checkResults.riskScore >= 7 ? 'WEAK' : 
+                               checkResults.riskScore >= 4 ? 'MODERATE' : 
+                               checkResults.riskScore >= 2 ? 'STRONG' : 'EXCELLENT'}
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                          <div className="space-y-2">
-                            <p className="font-mono">
-                              <span className="text-cyan-400">LENGTH:</span> 
-                              <span className="ml-2 text-white">
-                                {checkResults.password.length} characters
-                              </span>
-                            </p>
-                          </div>
-                          <div className="space-y-2">
-                            <p className="font-mono">
-                              <span className="text-cyan-400">BREACHES:</span> 
-                              <span className="ml-2 text-white">
-                                {checkResults.breachCount?.toLocaleString() || 0}
-                              </span>
-                            </p>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                            <div className="space-y-2">
+                              <p className="font-mono">
+                                <span className="text-cyan-400">LENGTH:</span> 
+                                <span className="ml-2 text-white">
+                                  {checkResults.password.length} characters
+                                </span>
+                              </p>
+                            </div>
+                            <div className="space-y-2">
+                              <p className="font-mono">
+                                <span className="text-cyan-400">BREACHES:</span> 
+                                <span className="ml-2 text-white">
+                                  {checkResults.breachCount?.toLocaleString() || 0}
+                                </span>
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Security Issues */}
-                    {checkResults.issues && checkResults.issues.length > 0 && (
-                      <div className="bg-black/40 backdrop-blur-md border border-red-500/30 rounded-lg p-6">
-                        <h4 className="text-red-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
-                          ⚠️ &nbsp;&nbsp;SECURITY&nbsp;ISSUES&nbsp;&nbsp; ⚠️
-                        </h4>
-                        <div className="space-y-4">
-                          {checkResults.issues
-                            .sort((a, b) => {
-                              const severityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
-                              return severityOrder[b.severity] - severityOrder[a.severity];
-                            })
-                            .map((issue, index) => (
-                            <div key={index} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
-                              <div className="flex items-center justify-between">
-                                <span className="text-cyan-400 font-mono font-bold text-sm">
-                                  {issue.type.toUpperCase()}
-                                </span>
-                                <div className="text-white font-mono text-sm flex-1 text-center px-4">
-                                  {issue.message}
+                      {/* Security Issues */}
+                      {checkResults.issues && checkResults.issues.length > 0 && (
+                        <div className="bg-black/40 backdrop-blur-md border border-red-500/30 rounded-lg p-6">
+                          <h4 className="text-red-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
+                            ⚠️ &nbsp;&nbsp;SECURITY&nbsp;ISSUES&nbsp;&nbsp; ⚠️
+                          </h4>
+                          <div className="space-y-4">
+                            {checkResults.issues
+                              .sort((a, b) => {
+                                const severityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
+                                return severityOrder[b.severity] - severityOrder[a.severity];
+                              })
+                              .map((issue, index) => (
+                              <div key={index} className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-cyan-400 font-mono font-bold text-sm">
+                                    {issue.type.toUpperCase()}
+                                  </span>
+                                  <div className="text-white font-mono text-sm flex-1 text-center px-4">
+                                    {issue.message}
+                                  </div>
+                                  <span 
+                                    className="px-4 py-1 rounded-full text-sm font-bold text-white shadow-lg"
+                                    style={{ 
+                                      backgroundColor: getSeverityColor(issue.severity),
+                                      minWidth: '80px',
+                                      textAlign: 'center',
+                                      display: 'inline-block'
+                                    }}
+                                  >
+                                    {issue.severity.toUpperCase()}
+                                  </span>
                                 </div>
-                                <span 
-                                  className="px-4 py-1 rounded-full text-sm font-bold text-white shadow-lg"
-                                  style={{ 
-                                    backgroundColor: getSeverityColor(issue.severity),
-                                    minWidth: '80px',
-                                    textAlign: 'center',
-                                    display: 'inline-block'
-                                  }}
-                                >
-                                  {issue.severity.toUpperCase()}
-                                </span>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Recommendations */}
-                    {checkResults.recommendations && checkResults.recommendations.length > 0 && (
-                      <div className="bg-green-900/20 backdrop-blur-md border border-green-500/30 rounded-lg p-6">
-                        <h4 className="text-green-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
-                          💡 &nbsp;&nbsp;SECURITY&nbsp;RECOMMENDATIONS&nbsp;&nbsp; 💡
-                        </h4>
-                        <div className="space-y-3">
-                          {checkResults.recommendations.map((rec, index) => (
-                            <div key={index} className="bg-green-900/20 rounded-lg p-4 border border-green-500/20">
-                              <div className="text-green-300 font-mono font-bold text-sm mb-2">
-                                {rec.title.toUpperCase()}
+                      {/* Recommendations */}
+                      {checkResults.recommendations && checkResults.recommendations.length > 0 && (
+                        <div className="bg-green-900/20 backdrop-blur-md border border-green-500/30 rounded-lg p-6">
+                          <h4 className="text-green-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
+                            💡 &nbsp;&nbsp;SECURITY&nbsp;RECOMMENDATIONS&nbsp;&nbsp; 💡
+                          </h4>
+                          <div className="space-y-3">
+                            {checkResults.recommendations.map((rec, index) => (
+                              <div key={index} className="bg-green-900/20 rounded-lg p-4 border border-green-500/20">
+                                <div className="text-green-300 font-mono font-bold text-sm mb-2">
+                                  {rec.title.toUpperCase()}
+                                </div>
+                                <div className="text-green-200 font-mono text-sm">
+                                  {rec.description}
+                                </div>
                               </div>
-                              <div className="text-green-200 font-mono text-sm">
-                                {rec.description}
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </MotionDiv>
-                )}
+                      )}
+                    </MotionDiv>
+                  )}
 
-                {/* Error Results */}
-                {checkResults && checkResults.error && (
-                  <MotionDiv
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="bg-red-900/20 backdrop-blur-md border border-red-500/30 rounded-lg p-6"
-                  >
-                    <h4 className="text-red-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
-                      ❌ &nbsp;&nbsp;ANALYSIS&nbsp;FAILED&nbsp;&nbsp; ❌
-                    </h4>
-                    <p className="text-red-300 font-mono mb-4 text-center">
-                      {checkResults.error}
-                    </p>
-                  </MotionDiv>
-                )}
+                  {/* Error Results */}
+                  {checkResults && checkResults.error && (
+                    <MotionDiv
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="bg-red-900/20 backdrop-blur-md border border-red-500/30 rounded-lg p-6"
+                    >
+                      <h4 className="text-red-400 font-mono font-bold mb-4 text-center" style={{ fontSize: '1.2rem' }}>
+                        ❌ &nbsp;&nbsp;ANALYSIS&nbsp;FAILED&nbsp;&nbsp; ❌
+                      </h4>
+                      <p className="text-red-300 font-mono mb-4 text-center">
+                        {checkResults.error}
+                      </p>
+                    </MotionDiv>
+                  )}
+                </div>
 
                 {/* How It Works Section */}
                 <MotionDiv
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-8"
+                  className="bg-black/40 backdrop-blur-md border border-cyan-500/30 rounded-lg p-6 lg:p-8 pass-how"
                 >
-                  <div className="text-center space-y-4">
+                  <div className="text-center space-y-3">
                     <div className="flex justify-center items-center space-x-3">
                       <Shield className="h-8 w-8 text-cyan-400" />
                       <h3 style={{ fontSize: '1.5rem' }} className="font-mono font-bold">
-                        &nbsp;&nbsp;HOW&nbsp;THIS&nbsp;WORKS&nbsp;&nbsp;
+                        HOW THIS WORKS
                       </h3>
                       <Brain className="h-8 w-8 text-purple-400" />
                     </div>
-                    
-                    <div className="space-y-4 text-cyan-200 font-mono">
+
+                    <div className="space-y-3 text-cyan-200 font-mono text-sm md:text-base leading-snug">
                       <p>
-                        Our password analyzer checks against NIST guidelines, common password 
+                        Our password analyzer checks against NIST guidelines, common password
                         lists, and the "Have I Been Pwned" database to assess security risks.
                       </p>
                       <p>
-                        The generator uses cryptographic algorithms including Blum Blum Shub 
+                        The generator uses cryptographic algorithms including Blum Blum Shub
                         for truly random password generation with customizable complexity.
                       </p>
                       <p className="text-cyan-400 font-bold">
-                        REMEMBER: Always use unique passwords for each account and enable 
+                        REMEMBER: Always use unique passwords for each account and enable
                         two-factor authentication when available.
                       </p>
                     </div>
@@ -525,7 +527,7 @@ function PasswordGeneratorAndCheckerTool() {
               </div>
               
               {/* Right Column - Main Tool Interface */}
-              <div className="w-full lg:w-1/2">
+              <div className="min-w-0 pass-right">
                 {/* Tab Selector */}
                 <MotionDiv
                   initial={{ opacity: 0, x: 30 }}
